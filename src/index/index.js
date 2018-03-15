@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 
 ReactDOM.render(
   <div>
-      hello
+      <a href='/admin.html'>hello</a>
   </div>,
   document.getElementById('app')
 )

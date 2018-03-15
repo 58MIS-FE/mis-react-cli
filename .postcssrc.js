@@ -2,7 +2,7 @@ module.exports = {
 	"plugins": {
 		"postcss-import": {
 			path: [
-				'src/mis',
+				'src',
 				'node_modules'
 			]
 		},

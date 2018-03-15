@@ -6,7 +6,7 @@ const path = require('path');
 
 module.exports = {
 	// 多页配置
-	isMultiplePage: true,
+	isMultiplePage: false,
 	//多页面打包入口
 	multiplePage:['admin','index'],
 	//想要打包的页面
