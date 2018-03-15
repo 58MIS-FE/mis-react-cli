@@ -7,10 +7,10 @@ const path = require('path');
 module.exports = {
 	// 多页配置
 	isMultiplePage: true,
-
-	pageUrl:{
-		'/admin':path.resolve(__dirname, '../src/mis/admin/index.html')
-	},
+	//多页面打包入口
+	multiplePage:['admin','index'],
+	//想要打包的页面
+	entryPage: 'admin',
 	// 是否启用异步加载功能
 	isOpenSyncImport: true,
 	// 最小chunk的大小
@@ -19,6 +19,8 @@ module.exports = {
 	autoOpenBrowser: true,
 	// 文件目录
 	assetsRoot: path.resolve(__dirname, '../src'),
+	// 静态资源目录
+	assetsStatic: path.resolve(__dirname, '../static'),
 	// 生成目录
 	buildRoot: path.resolve(__dirname, '../dist'),
 	// 静态资源根目录
@@ -28,9 +30,9 @@ module.exports = {
 	// 公用别名
 	commonAlias: {
 		Static: 'static',
-		'@': 'mis',
-		'mis@': 'mis/index',
-		'mis@comp': 'mis/index/js/components'
+		'@': './',
+		'mis@': './index',
+		'mis@comp': './js/components'
 	},
 	// 外部扩展
 	externals: {

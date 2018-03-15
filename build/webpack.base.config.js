@@ -17,11 +17,11 @@ function getPath(...args) {
 
 function getCommonsChunk() {
     return new Glob('!(_)*/!(_)*.js', {
-        cwd: getPath('pages', 'common'),
-        sync: true
-    })
+            cwd: getPath('common'),
+            sync: true
+        })
         .found
-        .map(file => getPath('pages', 'common', file));
+        .map(file => getPath('common', file));
 }
 
 const commonsChunk = config.isOpenSyncImport ? {} : Object.assign({
@@ -78,7 +78,6 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
                         fallback: 'style-loader',
                         use: [
@@ -89,7 +88,6 @@ module.exports = {
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                exclude: /node_modules/,
                 use: {
                     loader: 'url-loader',
                     options: {
@@ -100,7 +98,6 @@ module.exports = {
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)$/i,
-                exclude: /node_modules/,
                 use: {
                     loader: 'url-loader',
                     options: {
@@ -121,13 +118,13 @@ module.exports = {
         // 检测外部依赖包是否更新
         new webpack.DllReferencePlugin({
             context: __dirname,
-            manifest: require(`${config.assetsRoot}/${config.staticAssets}/libs/js/manifest_vendors.json`)
+            manifest: require(`${config.assetsStatic}/libs/js/manifest_vendors.json`)
         }),
 
         // 插入自定义文件插入到html中
         new AddAssetHtmlPlugin([
             {
-                filepath: pathJoin(config.assetsRoot, config.staticAssets, 'libs/js/vendors.js'),
+                filepath: pathJoin(config.assetsStatic, 'libs/js/vendors.js'),
                 publicPath: pathJoin(config.publicPath, config.staticAssets, 'libs/js'),
                 outputPath: pathJoin(config.staticAssets, 'libs/js'),
                 files: config.libraryEntry.map(entry => entry + '.html'),

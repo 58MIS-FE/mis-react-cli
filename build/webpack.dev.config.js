@@ -20,6 +20,7 @@ const config = nowConfig();
 
 const commonsChunk = commonsChunkName();
 
+const base = require('../config/base.js')
 module.exports = webpackMerge(baseWebpackConfig, {
 	// devtool: '#cheap-module-eval-source-map',
 
@@ -35,7 +36,8 @@ module.exports = webpackMerge(baseWebpackConfig, {
 		new FriendlyErrorsPlugin()
 	].concat(config.template.map(template => {
 		let chunkName = template.split(path.sep).slice(-2)[0];
-
+		        //判断是否为单页面应用
+		base.isMultiplePage ? chunkName = chunkName : chunkName = 'index'
 		return new HtmlWebpackPlugin({
 			filename: chunkName + '.html',
 			template: template,

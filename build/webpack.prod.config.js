@@ -32,8 +32,8 @@ module.exports = webpackMerge(baseWebpackConfig, {
 			'process.env': config.env
 		}),
 
-		// banner条
-		new webpack.BannerPlugin(''),
+		// banner条	
+        new webpack.BannerPlugin('版权归MIS-FE所有'),
 
 		// 压缩css
 		new OptimizeCSSPlugin(),
@@ -50,18 +50,18 @@ module.exports = webpackMerge(baseWebpackConfig, {
 		}),
 
 		// 压缩静态资源
-		new CompressionWebpackPlugin({
-			asset: '[path].gz[query]',
-			algorithm: 'gzip',
-			test: /\.js$|\.html$/,
-			threshold: 10240,
-			minRatio: 0.8
-		}),
+		// new CompressionWebpackPlugin({
+		// 	asset: '[path].gz[query]',
+		// 	algorithm: 'gzip',
+		// 	test: /\.js$|\.html$/,
+		// 	threshold: 10240,
+		// 	minRatio: 0.8
+		// }),
 
 		// 拷贝静态资源
 		new CopyWebpackPlugin([
 			{
-				from: path.join(config.assetsRoot, config.staticAssets),
+				from: path.join(config.assetsStatic),
 				to: path.join(config.buildRoot, config.staticAssets)
 			}
 		]),
